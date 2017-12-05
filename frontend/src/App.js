@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import './App.css';
 
 class App extends Component {
-  // componentDidMount() {
-  //   this.props.fetchCategories;
-  // }
-
   render() {
     return (
       <div className="App">
@@ -22,13 +18,5 @@ const mapStateToProps = state => {
     categories: state,
   };
 };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTodoClick: id => {
-//       dispatch(toggleTodo(id));
-//     },
-//   };
-// };
 
 export default connect(mapStateToProps)(App);
