@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const MainAppContainer = () => <App store={configStore()} />;
+const Root = () => <App store={configStore()} />;
 
-ReactDOM.render(<MainAppContainer />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'));
 registerServiceWorker();
