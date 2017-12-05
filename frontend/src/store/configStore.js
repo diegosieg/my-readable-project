@@ -2,8 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import finalReducer from './reducers';
 
-//import { loadPosts } from '../actions/posts';
 import { getAllCategories } from './categories/actions';
+import { getAllPosts } from './posts/actions';
 
 const configStore = () => {
   const composeEnhancers =
@@ -15,7 +15,7 @@ const configStore = () => {
 
   // fetch initial data
   store.dispatch(getAllCategories());
-  //store.dispatch(loadPosts());
+  store.dispatch(getAllPosts());
 
   return store;
 };

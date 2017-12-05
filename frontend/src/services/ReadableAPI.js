@@ -22,11 +22,26 @@ const HEADERS = {
  * getAllCategories
  * @return {Array} category array
  */
-const getAllCategories = () =>
-  fetch(`${API}/categories`, { headers: HEADERS })
+const getAllCategories = () => {
+  return fetch(`${API}/categories`, { headers: HEADERS })
     .then(results => results.json())
     .then(data => data.categories);
+};
 
+/**
+ * getAllPosts
+ * @return {Array} posts array
+ */
+const getAllPosts = () => {
+  return fetch(`${API}/posts`, { headers: HEADERS })
+    .then(results => results.json())
+    .then(data => data);
+};
+
+//
+// Export Methods
+//
 export default {
   getAllCategories,
+  getAllPosts,
 };
