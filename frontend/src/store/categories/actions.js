@@ -10,6 +10,6 @@ export const getAllCategories = () => dispatch => {
 const getAllCategoriesDone = categories => {
   return {
     type: types.GET_ALL_CATEGORIES_DONE,
-    payload: categories,
+    categories,
   };
 };

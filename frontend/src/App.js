@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllCategories } from './store/categories/actions';
 
 import './App.css';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchCategories();
-  }
+  // componentDidMount() {
+  //   this.props.fetchCategories;
+  // }
 
   render() {
     return (
@@ -18,11 +17,18 @@ class App extends Component {
   }
 }
 
-// which props do we want to inject, given the global store state?
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
-    fetchCategories: getAllCategories(state),
+    categories: state,
   };
-}
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onTodoClick: id => {
+//       dispatch(toggleTodo(id));
+//     },
+//   };
+// };
 
 export default connect(mapStateToProps)(App);
