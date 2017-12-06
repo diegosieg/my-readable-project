@@ -15,7 +15,7 @@ class MainScreen extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.loadComments} />
+        <button onClick={this.loadComments}>test get comments</button>
       </div>
     );
   }
