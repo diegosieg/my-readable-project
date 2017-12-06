@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MainScreen from './containers/MainScreen';
 
 import './App.css';
 
@@ -10,6 +11,7 @@ const App = store => {
   return (
     <div className="App">
       <h1>yo!</h1>
+      <MainScreen />
     </div>
   );
 };

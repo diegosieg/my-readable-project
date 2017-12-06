@@ -11,3 +11,17 @@ const getAllPostsDone = posts => {
     posts,
   };
 };
+
+// export const getPostContent = postId => dispatch => {
+//   api
+//     .getPostContent(postId)
+//     .then(post => dispatch(getPostContentDone(post, postId)));
+// };
+
+// const getPostContentDone = (post, postId) => {
+//   return {
+//     type: types.GET_POST_CONTENT_DONE,
+//     post,
+//     postId,
+//   };
+// };

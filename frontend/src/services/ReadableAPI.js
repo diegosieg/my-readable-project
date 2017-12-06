@@ -38,10 +38,34 @@ const getAllPosts = () => {
     .then(data => data);
 };
 
+/**
+ * getPostContent
+ * @param {String} postId
+ * @return {Array} post array
+ */
+const getPostContent = postId => {
+  return fetch(`${API}/posts/${postId}`, { headers: HEADERS })
+    .then(results => results.json())
+    .then(data => data);
+};
+
+/**
+ * getCommentsByPost
+ * @param {String} postId
+ * @return {Array} posts array
+ */
+const getCommentsByPost = postId => {
+  return fetch(`${API}/posts/${postId}/comments`, { headers: HEADERS })
+    .then(results => results.json())
+    .then(data => data);
+};
+
 //
 // Export Methods
 //
 export default {
   getAllCategories,
   getAllPosts,
+  getPostContent,
+  getCommentsByPost,
 };
