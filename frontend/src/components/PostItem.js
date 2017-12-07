@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import escapeRegExp from 'escape-string-regexp';
 
-import '../App.css';
+import './PostItem.css';
 
 const PostItem = ({ posts, postId }) => {
   let myPostItem;
