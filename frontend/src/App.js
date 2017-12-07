@@ -4,13 +4,9 @@ import MainScreen from './containers/MainScreen';
 
 import './App.css';
 
-const App = store => {
-  console.log(store);
-  //console.log(store.categories);
-  //console.log(store.posts);
+const App = () => {
   return (
-    <div className="App">
-      <h1>yo!</h1>
+    <div className="c-app">
       <MainScreen />
     </div>
   );

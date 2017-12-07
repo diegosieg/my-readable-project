@@ -1,1 +1,40 @@
+.c-app-container {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100vh;
+}
 
+.c-app-container > * {
+  flex: 1 100%;
+}
+
+.c-app-header {
+  background: #16a085;
+  color: #fbfbfb;
+  order: 0;
+}
+
+.c-app-main {
+  background: #ecf0f1;
+}
+
+.c-app-main {
+  flex: 3 100%;
+  order: 1;
+}
+
+@media all and (min-width: 550px) {
+  .c-app-header {
+    flex: 1 auto;
+  }
+  .c-app-main {
+    flex: 5 0px;
+    order: 2;
+  }
+}
+
+.c-post-item {
+  border: 1px solid #7f8c8d;
+  margin: 0.5em;
+  padding: 1em;
+}

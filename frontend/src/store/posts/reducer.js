@@ -1,13 +1,16 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  posts: undefined,
+  postsList: [],
 };
 
 const postsReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.GET_ALL_POSTS_DONE:
-      return action.posts;
+      return {
+        ...state,
+        postsList: action.posts,
+      };
     default:
       return state;
   }

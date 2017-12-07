@@ -1,13 +1,16 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  categories: undefined,
+  catList: [],
 };
 
 const categoriesReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.GET_ALL_CATEGORIES_DONE:
-      return action.categories;
+      return {
+        ...state,
+        catList: action.categories,
+      };
     default:
       return state;
   }
