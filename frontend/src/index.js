@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import configStore from './store/configStore';
 import './index.css';
@@ -9,7 +10,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 const Root = () => (
   <Provider store={configStore()}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>
 );
 

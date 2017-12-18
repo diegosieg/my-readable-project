@@ -11,7 +11,7 @@ const PostItem = ({ posts, postId }) => {
     myPostItem = posts.filter(post => match.test(post.id));
   }
   let postDetails = myPostItem[0];
-  console.log(postDetails);
+  //console.log(postDetails);
 
   return (
     <div className="c-post-item">

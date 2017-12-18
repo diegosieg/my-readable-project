@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCommentsByPost } from '../store/comments/actions';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from '../components/Header';
 import PostsList from '../components/PostsList';
 
 class MainScreen extends Component {
   constructor() {
     super();
-    this.state = { categories: [] };
+    this.state = {
+      categories: [],
+    };
   }
 
   loadComments = () => {
     this.props.getCommentsByPost('8xf0y6ziyjabvozdd253nd');
-    console.log(this.props.categories);
+    console.log(this.props);
   };
 
   render() {
@@ -20,7 +23,15 @@ class MainScreen extends Component {
       <div className="c-app-container">
         <Header />
         <div className="c-app-main">
-          <PostsList />
+          <Switch>
+            <Route exact path="/" render={props => <PostsList {...props} />} />
+            <Route
+              exact
+              path="/:category"
+              component={props => <PostsList {...props} />}
+            />
+          </Switch>
+
           {/* <button onClick={this.loadComments}>test get comments</button> */}
         </div>
       </div>
@@ -39,4 +50,6 @@ const mapDispatchToProps = dispatch => ({
   getCommentsByPost: postId => dispatch(getCommentsByPost(postId)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MainScreen),
+);
