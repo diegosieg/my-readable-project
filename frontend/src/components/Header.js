@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import '../App.css';
 
@@ -11,11 +11,13 @@ const Header = ({ categories }) => {
       <h1>Say yo!</h1>
       <ul>
         <li>
-          <Link to="/">All</Link>
+          <NavLink to="/">All</NavLink>
         </li>
         {categories.map(category => (
           <li key={category.path}>
-            <Link to={category.path}>{category.name}</Link>
+            <NavLink to={`/${category.path}`} activeClassName="selected">
+              {category.name}
+            </NavLink>
           </li>
         ))}
       </ul>

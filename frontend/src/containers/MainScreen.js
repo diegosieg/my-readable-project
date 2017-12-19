@@ -4,6 +4,7 @@ import { getCommentsByPost } from '../store/comments/actions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from '../components/Header';
 import PostsList from '../components/PostsList';
+import PostView from '../components/PostView';
 
 class MainScreen extends Component {
   constructor() {
@@ -29,6 +30,11 @@ class MainScreen extends Component {
               exact
               path="/:category"
               component={props => <PostsList {...props} />}
+            />
+            <Route
+              exact
+              path="/post/:id"
+              component={props => <PostView {...props} />}
             />
           </Switch>
 

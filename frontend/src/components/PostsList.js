@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PostItem from '../components/PostItem';
 
 import '../App.css';
@@ -39,13 +39,22 @@ class PostsList extends Component {
     } else {
       postsToDisplay = posts;
     }
-
     return (
       <div className="c-posts-list">
         <h2>{this.props.match.params.category}</h2>
-        {postsToDisplay.map(post => (
-          <PostItem key={post.id} postId={post.id} />
-        ))}
+        {postsToDisplay.length > 0 ? (
+          <div>
+            {postsToDisplay.map(post => (
+              <span key={post.id}>
+                <Link to={`/post/${post.id}`}>
+                  <PostItem postId={post.id} />
+                </Link>
+              </span>
+            ))}
+          </div>
+        ) : (
+          <div>Sorry, no posts in this category yet.</div>
+        )}
       </div>
     );
   }
