@@ -1,0 +1,15 @@
+.c-posts-list {
+  margin: 2.5em;
+}
+
+.c-posts-list-item {
+  background: #fbfbfb;
+  border: 1px solid #e1e1e1;
+  margin: 2.5em 0;
+  padding: 1em;
+}
+
+.c-posts-list-item a {
+  color: #262626;
+  text-decoration: none;
+}

@@ -1,7 +1,22 @@
+body,
+html,
+body > div {
+  height: 100%;
+}
+
 .c-app-container {
+  height: 100%;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
   display: flex;
-  flex-flow: row wrap;
-  height: 100vh;
+
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
 }
 
 .c-app-container > * {

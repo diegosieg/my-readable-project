@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import { connect } from 'react-redux';
 
 import './PostItem.css';
+import './PostView.css';
 
 class PostView extends Component {
   constructor() {
@@ -37,14 +39,21 @@ class PostView extends Component {
 
     let postDetails = postToDisplay[0];
 
+    // Set the output format for every react-moment instance.
+    Moment.globalFormat = 'ddd DD MMM YYYY, HH:mm';
+
     return (
-      <div className="c-post-item">
+      <div className="c-post-item c-post-view">
         {postDetails !== undefined ? (
           <div>
             <h2>{postDetails.title}</h2>
             <p>{postDetails.body}</p>
             <p>
-              by: <span>{postDetails.author}</span>
+              Created by: {postDetails.author}
+              <span>
+                {` - on `}
+                <Moment unix>{postDetails.timestamp / 1000}</Moment>
+              </span>
             </p>
           </div>
         ) : (

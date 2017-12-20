@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import PostItem from '../components/PostItem';
 
-import '../App.css';
+import './PostsList.css';
 
 class PostsList extends Component {
   constructor() {
@@ -41,15 +41,15 @@ class PostsList extends Component {
     }
     return (
       <div className="c-posts-list">
-        <h2>{this.props.match.params.category}</h2>
+        <h2>{`${selectedCategory} articles`}</h2>
         {postsToDisplay.length > 0 ? (
           <div>
             {postsToDisplay.map(post => (
-              <span key={post.id}>
+              <div className="c-posts-list-item" key={post.id}>
                 <Link to={`/post/${post.id}`}>
                   <PostItem postId={post.id} />
                 </Link>
-              </span>
+              </div>
             ))}
           </div>
         ) : (
