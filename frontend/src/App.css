@@ -2,31 +2,21 @@ body,
 html,
 body > div {
   height: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.c-app {
+  height: 100%;
 }
 
 .c-app-container {
   height: 100%;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-box;
   display: flex;
-
-  -ms-flex-direction: row;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  flex-flow: row wrap;
 }
 
 .c-app-container > * {
   flex: 1 100%;
-}
-
-.c-app-header {
-  background: #16a085;
-  color: #fbfbfb;
-  order: 0;
 }
 
 .c-app-main {

@@ -1,0 +1,57 @@
+.c-app-header {
+  background: #2c3e50;
+  color: #fbfbfb;
+  order: 0;
+}
+
+.c-app-header h1 {
+  margin: 3rem 2.4rem;
+}
+.c-app-header a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.c-app-header .item {
+  list-style: none;
+  background: gray;
+  margin-bottom: 0.45rem;
+  margin-left: 0px;
+  text-transform: capitalize;
+}
+
+.c-app-header .item:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.c-app-header a.selected {
+  margin-left: -20px;
+}
+
+.c-app-header .item a {
+  display: block;
+  padding: 1rem 1.2rem;
+  font-size: 1.2rem;
+}
+
+.c-app-header .item-all {
+  background: #1abc9c;
+}
+
+.c-app-header .item-all.active {
+  margin-left: -20px;
+}
+
+.c-app-header .item-react {
+  background: #3498db;
+}
+
+.c-app-header .item-redux {
+  background: #9b59b6;
+}
+
+.c-app-header .item-udacity {
+  background: #f39c12;
+}

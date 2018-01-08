@@ -3,19 +3,28 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
 import '../App.css';
+import './Header.css';
 
 const Header = ({ categories }) => {
-  // className={currentCategory === category.path ? 'active' : ''}
   return (
     <header className="c-app-header">
-      <h1>Say yo!</h1>
+      <NavLink to="/">
+        <h1>hey yo!</h1>
+      </NavLink>
       <ul>
-        <li>
-          <NavLink to="/">All</NavLink>
+        <li className="item">
+          <NavLink to="/" className="item-all" exact activeClassName="selected">
+            All
+          </NavLink>
         </li>
         {categories.map(category => (
-          <li key={category.path}>
-            <NavLink to={`/${category.path}`} activeClassName="selected">
+          <li key={category.path} className="item">
+            <NavLink
+              exact
+              to={`/${category.path}`}
+              className={`item-${category.path}`}
+              activeClassName="selected"
+            >
               {category.name}
             </NavLink>
           </li>
@@ -27,7 +36,6 @@ const Header = ({ categories }) => {
 
 const mapStateToProps = (state, props) => ({
   categories: state.categories.catList,
-  //currentCategory: state.categories.current,
 });
 
 export default withRouter(connect(mapStateToProps, null)(Header));

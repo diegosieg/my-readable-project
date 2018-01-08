@@ -29,7 +29,7 @@ const PostItem = ({ posts, postId }) => {
           <Moment unix>{postDate}</Moment>
         </span>
       </p>
-      <p>{postDetails.body}</p>
+      {/* <p>{postDetails.body}</p> */}
       {postDetails.commentCount >= 1 ? (
         <span>{`${postDetails.commentCount}  ${comments}`}</span>
       ) : (
