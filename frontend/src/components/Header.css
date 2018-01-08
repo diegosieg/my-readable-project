@@ -21,9 +21,14 @@
   text-transform: capitalize;
 }
 
-.c-app-header .item:hover {
-  opacity: 0.8;
+.c-app-header .item a:hover {
+  opacity: 0.7;
   transition: opacity 0.3s ease-in-out;
+}
+
+.c-app-header .item a.selected:hover,
+.c-app-header .item a.active:hover {
+  opacity: 1;
 }
 
 .c-app-header a.selected {
