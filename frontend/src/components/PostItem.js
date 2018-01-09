@@ -15,7 +15,7 @@ const PostItem = ({ posts, postId }) => {
     myPostItem = posts.filter(post => match.test(post.id));
   }
   let postDetails = myPostItem[0];
-  console.log(postDetails);
+  //console.log(postDetails);
   let postDate = postDetails.timestamp / 1000;
   let comments = postDetails.commentCount === 1 ? 'comment' : 'comments';
 

@@ -41,7 +41,7 @@ class PostsList extends Component {
     }
     return (
       <div className="c-posts-list">
-        <h2>{`${selectedCategory} articles`}</h2>
+        <h2 className="c-posts-list-title">{`${selectedCategory} articles`}</h2>
         {postsToDisplay.length > 0 ? (
           <div>
             {postsToDisplay.map(post => (

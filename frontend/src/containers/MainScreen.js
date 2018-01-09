@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCommentsByPost } from '../store/comments/actions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from '../components/Header';
 import PostsList from '../components/PostsList';
@@ -13,11 +12,6 @@ class MainScreen extends Component {
       categories: [],
     };
   }
-
-  loadComments = () => {
-    this.props.getCommentsByPost('8xf0y6ziyjabvozdd253nd');
-    console.log(this.props);
-  };
 
   render() {
     return (
@@ -37,8 +31,6 @@ class MainScreen extends Component {
               component={props => <PostView {...props} />}
             />
           </Switch>
-
-          {/* <button onClick={this.loadComments}>test get comments</button> */}
         </div>
       </div>
     );
@@ -46,16 +38,7 @@ class MainScreen extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  //post: state.posts.post,
-  comments: state.comments,
   categories: state.categories,
 });
 
-const mapDispatchToProps = dispatch => ({
-  //getPostContent: (postId) => dispatch(getPostContent(postId)),
-  getCommentsByPost: postId => dispatch(getCommentsByPost(postId)),
-});
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(MainScreen),
-);
+export default withRouter(connect(mapStateToProps, null)(MainScreen));

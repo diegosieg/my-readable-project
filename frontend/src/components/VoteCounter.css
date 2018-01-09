@@ -1,0 +1,23 @@
+.c-vote-counter {
+  width: 50px;
+  /* float: left; */
+}
+
+.c-vote-counter-button {
+  background: transparent;
+  border: 0;
+  font-size: 26px;
+  text-align: center;
+  width: 100%;
+}
+
+.c-vote-counter h2 {
+  text-align: center;
+}
+.c-vote-counter-value--negative {
+  color: #c0392b;
+}
+
+.c-vote-counter-value--positive {
+  color: #2980b9;
+}

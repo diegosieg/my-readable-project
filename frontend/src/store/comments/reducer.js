@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  posts: undefined,
+  posts: [],
 };
 
 const commentsReducer = (state = initialState, action = {}) => {
@@ -11,11 +11,15 @@ const commentsReducer = (state = initialState, action = {}) => {
       return comments.reduce(
         (newCommentsState, comment) => ({
           ...newCommentsState,
-          [comment.id]: comment,
+          commentsList: comments,
         }),
         {},
       );
 
+    // return {
+    //   ...state,
+    //   commentsList: action.comments,
+    // };
     default:
       return state;
   }
