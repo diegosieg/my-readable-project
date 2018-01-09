@@ -4,7 +4,7 @@
   order: 0;
 }
 
-.c-app-header h1 {
+.c-app-header-title {
   margin: 3rem 2.4rem;
 }
 .c-app-header a {
@@ -13,7 +13,7 @@
   text-decoration: none;
 }
 
-.c-app-header .item {
+.c-nav-item {
   list-style: none;
   background: gray;
   margin-bottom: 0.45rem;
@@ -21,42 +21,42 @@
   text-transform: capitalize;
 }
 
-.c-app-header .item a:hover {
-  opacity: 0.7;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.c-app-header .item a.selected:hover,
-.c-app-header .item a.active:hover {
-  opacity: 1;
-}
-
-.c-app-header a.selected {
-  margin-left: -20px;
-}
-
-.c-app-header .item a {
+.c-nav-item a {
   display: block;
   padding: 1rem 1.2rem;
   font-size: 1.2rem;
 }
 
-.c-app-header .item-all {
-  background: #1abc9c;
+.c-nav-item a:hover {
+  opacity: 0.7;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.c-app-header .item-all.active {
+.c-nav-item .selected:hover,
+.c-nav-item .active:hover {
+  opacity: 1;
+}
+
+.c-app-header .selected {
   margin-left: -20px;
 }
 
-.c-app-header .item-react {
+.c-nav-item-all {
+  background: #1abc9c;
+}
+
+.c-nav-item-all.active {
+  margin-left: -20px;
+}
+
+.c-nav-item-react {
   background: #3498db;
 }
 
-.c-app-header .item-redux {
+.c-nav-item-redux {
   background: #9b59b6;
 }
 
-.c-app-header .item-udacity {
+.c-nav-item-udacity {
   background: #f39c12;
 }
