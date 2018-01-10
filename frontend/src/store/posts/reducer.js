@@ -11,6 +11,8 @@ const postsReducer = (state = initialState, action = {}) => {
         ...state,
         postsList: action.posts,
       };
+    case types.CREATE_POST_DONE:
+      return [...state, action.post];
     default:
       return state;
   }

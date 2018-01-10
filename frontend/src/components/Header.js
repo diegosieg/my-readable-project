@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 
 import '../App.css';
 import './Header.css';
@@ -26,7 +26,7 @@ const Header = ({ categories }) => {
           <li key={category.path} className="c-nav-item">
             <NavLink
               exact
-              to={`/${category.path}`}
+              to={`/category/${category.path}`}
               className={`c-nav-item-${category.path}`}
               activeClassName="selected"
             >
@@ -35,6 +35,12 @@ const Header = ({ categories }) => {
           </li>
         ))}
       </ul>
+      <div>
+        <Link to="/create-post">
+          <span>Add post</span>
+          {/* <PostItem postId={post.id} /> */}
+        </Link>
+      </div>
     </header>
   );
 };

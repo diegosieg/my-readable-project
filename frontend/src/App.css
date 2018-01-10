@@ -1,16 +1,19 @@
 body,
 html,
 body > div {
-  height: auto;
+  height: 100%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 .c-app {
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
 }
 
 .c-app-container {
-  height: 100%;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-flow: row wrap;
 }

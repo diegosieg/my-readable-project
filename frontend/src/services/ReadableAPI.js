@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 const API = 'http://localhost:3001';
 
 //Generate an unique token for storing your data on the server
@@ -60,6 +62,23 @@ const getCommentsByPost = postId => {
     .then(data => data);
 };
 
+/**
+ * createPost
+ * @param {Obj} data
+ * @return {Array} posts array
+ */
+const createPost = postData => {
+  return fetch(`${API}/posts`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({
+      ...postData,
+      id: v4(),
+      timestamp: Date.now(),
+    }),
+  }).then(results => results.json());
+};
+
 //
 // Export Methods
 //
@@ -68,4 +87,5 @@ export default {
   getAllPosts,
   getPostContent,
   getCommentsByPost,
+  createPost,
 };
