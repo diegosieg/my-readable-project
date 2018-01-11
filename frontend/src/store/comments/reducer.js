@@ -4,7 +4,7 @@ const initialState = {
   posts: [],
 };
 
-const commentsReducer = (state = initialState, action = {}) => {
+const comments = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.GET_COMMENTS_BY_POST_DONE:
       const comments = action.comments;
@@ -25,4 +25,4 @@ const commentsReducer = (state = initialState, action = {}) => {
   }
 };
 
-export default commentsReducer;
+export default comments;

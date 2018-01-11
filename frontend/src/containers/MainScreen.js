@@ -44,7 +44,8 @@ class MainScreen extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  categories: state.categories,
+  posts: state.posts.postsList,
+  categories: state.categories.catList,
 });
 
 export default withRouter(connect(mapStateToProps, null)(MainScreen));

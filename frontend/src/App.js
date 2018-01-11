@@ -13,7 +13,7 @@ const App = () => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   return {
     categories: state.categories || [],
     posts: state.posts || [],

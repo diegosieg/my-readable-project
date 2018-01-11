@@ -32,17 +32,22 @@ class PostsList extends Component {
     const { posts } = this.props;
     let postsToDisplay;
     let selectedCategory = this.state.selectedCategory;
-    //console.log(selectedCategory);
+    console.log(posts);
 
-    if (selectedCategory !== 'all') {
-      postsToDisplay = posts.filter(post => post.category === selectedCategory);
-    } else {
-      postsToDisplay = posts;
+    if (posts !== undefined) {
+      if (selectedCategory !== 'all') {
+        postsToDisplay = posts.filter(
+          post => post.category === selectedCategory,
+        );
+      } else {
+        postsToDisplay = posts;
+      }
     }
+
     return (
       <div className="c-posts-list">
         <h2 className="c-posts-list-title">{`${selectedCategory} articles`}</h2>
-        {postsToDisplay.length > 0 ? (
+        {postsToDisplay && postsToDisplay.length > 0 ? (
           <div>
             {postsToDisplay.map(post => (
               <div className="c-posts-list-item" key={post.id}>

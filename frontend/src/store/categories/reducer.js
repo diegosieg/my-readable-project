@@ -4,7 +4,7 @@ const initialState = {
   catList: [],
 };
 
-const categoriesReducer = (state = initialState, action = {}) => {
+const categories = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.GET_ALL_CATEGORIES_DONE:
       return {
@@ -16,4 +16,4 @@ const categoriesReducer = (state = initialState, action = {}) => {
   }
 };
 
-export default categoriesReducer;
+export default categories;

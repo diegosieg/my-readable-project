@@ -14,7 +14,7 @@ const getAllPostsDone = posts => {
 };
 
 //create post
-export const createPost = data => dispatch => {
+export const createNewPost = data => dispatch => {
   api.createPost(data).then(post => dispatch(createPostWithSuccess(post)));
 };
 

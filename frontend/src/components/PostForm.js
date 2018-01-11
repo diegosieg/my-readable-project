@@ -1,108 +1,65 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
-//import api from '../services/ReadableAPI';
-
-import { createPost } from '../store/posts/actions';
-
+import { Field, reduxForm } from 'redux-form';
 //import './PostsList.css';
 
-class PostForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      //categoriesLoaded: false,
-      category: '',
-      selectedCategory: 'react',
-      newPostTitle: '',
-      newPostBody: '',
-      newPostUsername: '',
-      postSubmitted: false,
-    };
-  }
+import { createNewPost } from '../store/posts/actions';
 
-  handleInputChange = event => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    this.setState({
-      [name]: value,
-    });
-  };
+let PostForm = props => {
+  const { handleSubmit, createNewPost, categories } = props;
 
-  handleCreatePostSubmit = event => {
-    event.preventDefault();
-    let postData = {
-      title: this.state.newPostTitle,
-      body: this.state.newPostBody,
-      author: this.state.newPostUsername,
-      category: this.state.selectedCategory,
-    };
-
-    // api.createPost(postData)
-    //   .then(() => {
-    //     this.setState({postSubmitted: true})
-    //   });
-
-    createPost(postData);
-    this.setState({ postSubmitted: true });
-
-    console.log(postData);
-  };
-
-  componentDidMount() {}
-
-  render() {
-    const { posts } = this.props;
-
-    return (
-      <div className="o-post-form__container">
-        <h2 className="c-post-form__title">Create a new post</h2>
-        {this.state.postSubmitted && <Redirect to="/" />}
-        <form
-          className="c-post-form__main"
-          action=""
-          onSubmit={this.handleCreatePostSubmit}
-        >
-          <div className="c-post-form__content">
-            <input
-              name="newPostTitle"
-              type="text"
-              value={this.state.newPostTitle}
-              onChange={this.handleInputChange}
-              placeholder="Post Title"
-            />
-            <textarea
-              name="newPostBody"
-              id=""
-              value={this.state.newPostBody}
-              onChange={this.handleInputChange}
-              placeholder="Type your text"
-            />
-            <input
-              name="newPostUsername"
-              type="text"
-              value={this.state.newPostUsername}
-              onChange={this.handleInputChange}
-              placeholder="Author's Name"
-            />
+  return (
+    <div className="o-post-form__container">
+      <h2 className="c-post-form__title">Create a new post</h2>
+      <form
+        onSubmit={handleSubmit(data => {
+          const { title, body, author, category = categories[0].name } = data;
+          data = { title, body, author, category };
+          //if(isEdit) {
+          //editPost(match.params.id, data);
+          //} else {
+          createNewPost(data);
+          //}
+        })}
+        className="c-post-form__main"
+      >
+        <div>
+          <label htmlFor="title">Title:</label>
+          <Field name="title" component="input" type="text" />
+        </div>
+        <div>
+          <label htmlFor="body">Content</label>
+          <Field name="body" component="textarea" type="text" />
+        </div>
+        <div className="form-field">
+          <label>Category</label>
+          <div className="form-field-input">
+            <Field name="category" component="select">
+              {categories.map(category => (
+                <option key={category.path} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </Field>
           </div>
-          <div className="c-post-form__controls">
-            <input
-              type="submit"
-              value="Publish Post"
-              className="c-post-form__button"
-            />
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+        </div>
+        <div>
+          <label htmlFor="author">Author's name:</label>
+          <Field name="author" component="input" type="text" />
+        </div>
+        <button type="submit">Publish</button>
+      </form>
+    </div>
+  );
+};
 
 const mapStateToProps = (state, props) => ({
   posts: state.posts.postsList,
+  categories: state.categories.catList,
 });
 
-// export default withRouter(connect(mapStateToProps, null)(PostForm));
-export default withRouter(connect(mapStateToProps, { createPost })(PostForm));
+export default reduxForm({
+  // a unique name for the form
+  form: 'post',
+})(withRouter(connect(mapStateToProps, { createNewPost })(PostForm)));
