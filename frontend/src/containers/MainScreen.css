@@ -1,0 +1,27 @@
+.c-app-container {
+  position: relative;
+}
+
+.c-add-post__button {
+  margin: 3rem 2rem;
+  position: fixed;
+  bottom: -1rem;
+  left: -0.8rem;
+}
+
+.c-add-post__button a {
+  padding: 1rem;
+  background: #ffffff;
+  color: #27ae60;
+  border: 2px solid #2ecc71;
+}
+.c-add-post__button span {
+  margin-left: 0.5rem;
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+.c-icon {
+  width: 2rem;
+  height: 1.5rem;
+  margin-top: -3px;
+}

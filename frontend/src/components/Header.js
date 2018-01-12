@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import '../App.css';
 import './Header.css';
@@ -35,12 +35,6 @@ const Header = ({ categories }) => {
           </li>
         ))}
       </ul>
-      <div>
-        <Link to="/create-post">
-          <span>Add post</span>
-          {/* <PostItem postId={post.id} /> */}
-        </Link>
-      </div>
     </header>
   );
 };

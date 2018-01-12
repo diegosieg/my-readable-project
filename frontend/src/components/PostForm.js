@@ -2,17 +2,42 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-//import './PostsList.css';
+
+import './PostForm.css';
 
 import { createNewPost } from '../store/posts/actions';
 
-let PostForm = props => {
-  const { handleSubmit, createNewPost, categories } = props;
+const renderField = ({
+  input,
+  label,
+  placeholder,
+  type,
+  meta: { touched, error },
+}) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} placeholder={placeholder} type={type} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
+);
+
+const PostForm = props => {
+  const {
+    handleSubmit,
+    createNewPost,
+    categories,
+    reset,
+    submitting,
+    history,
+  } = props;
 
   return (
-    <div className="o-post-form__container">
+    <div className="c-post-form__container">
       <h2 className="c-post-form__title">Create a new post</h2>
       <form
+        className="c-post-form__main"
         onSubmit={handleSubmit(data => {
           const { title, body, author, category = categories[0].name } = data;
           data = { title, body, author, category };
@@ -20,18 +45,28 @@ let PostForm = props => {
           //editPost(match.params.id, data);
           //} else {
           createNewPost(data);
+          history.goBack();
           //}
         })}
-        className="c-post-form__main"
       >
-        <div>
-          <label htmlFor="title">Title:</label>
-          <Field name="title" component="input" type="text" />
-        </div>
+        <Field
+          name="title"
+          type="text"
+          component={renderField}
+          label="Title"
+          placeholder="Type your amazing title..."
+        />
+
         <div>
           <label htmlFor="body">Content</label>
-          <Field name="body" component="textarea" type="text" />
+          <Field
+            name="body"
+            component="textarea"
+            placeholder="Tell your amazing story..."
+            type="text"
+          />
         </div>
+
         <div className="form-field">
           <label>Category</label>
           <div className="form-field-input">
@@ -44,11 +79,30 @@ let PostForm = props => {
             </Field>
           </div>
         </div>
-        <div>
-          <label htmlFor="author">Author's name:</label>
-          <Field name="author" component="input" type="text" />
-        </div>
-        <button type="submit">Publish</button>
+
+        <Field
+          name="author"
+          type="text"
+          component={renderField}
+          label="Author's name"
+          placeholder="Your writer name..."
+        />
+
+        <button
+          className="c-btn c-btn__submit"
+          type="submit"
+          disabled={submitting}
+        >
+          Publish
+        </button>
+
+        <button
+          className="c-btn c-btn__cancel"
+          type="button"
+          onClick={() => history.goBack()}
+        >
+          Cancel
+        </button>
       </form>
     </div>
   );

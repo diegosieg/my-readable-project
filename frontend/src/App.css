@@ -40,3 +40,9 @@ body > div {
     order: 2;
   }
 }
+
+.c-add-post--internal {
+  color: #27ae60;
+  margin: 1rem 0 0 -0.4rem;
+  display: inline-block;
+}

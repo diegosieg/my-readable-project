@@ -3,25 +3,25 @@ import * as types from './actionTypes';
 
 //get all posts
 export const getAllPosts = () => dispatch => {
-  api.getAllPosts().then(posts => dispatch(getAllPostsDone(posts)));
+  api.getAllPosts().then(data => dispatch(getAllPostsDone(data)));
 };
 
-const getAllPostsDone = posts => {
+const getAllPostsDone = data => {
   return {
     type: types.GET_ALL_POSTS_DONE,
-    posts,
+    data,
   };
 };
 
 //create post
-export const createNewPost = data => dispatch => {
-  api.createPost(data).then(post => dispatch(createPostWithSuccess(post)));
+export const createNewPost = post => dispatch => {
+  api.createPost(post).then(data => dispatch(createPostWithSuccess(data)));
 };
 
-const createPostWithSuccess = post => {
+const createPostWithSuccess = data => {
   return {
     type: types.CREATE_POST_DONE,
-    post,
+    data,
   };
 };
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import PostItem from '../components/PostItem';
+import { MdAddBox } from 'react-icons/lib/md';
 
 import './PostsList.css';
 
@@ -32,7 +33,7 @@ class PostsList extends Component {
     const { posts } = this.props;
     let postsToDisplay;
     let selectedCategory = this.state.selectedCategory;
-    console.log(posts);
+    //console.log(posts);
 
     if (posts !== undefined) {
       if (selectedCategory !== 'all') {
@@ -58,7 +59,13 @@ class PostsList extends Component {
             ))}
           </div>
         ) : (
-          <div>Sorry, no posts in this category yet.</div>
+          <div>
+            <p>Sorry, no posts in this category yet.</p>
+            <Link to="/create-post" className="c-add-post--internal">
+              <MdAddBox className="c-icon" />
+              <span>Add new post</span>
+            </Link>
+          </div>
         )}
       </div>
     );

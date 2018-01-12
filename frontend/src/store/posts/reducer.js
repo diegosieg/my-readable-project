@@ -9,12 +9,13 @@ const posts = (state = [], action = {}) => {
     case types.GET_ALL_POSTS_DONE:
       return {
         ...state,
-        postsList: action.posts,
+        postsList: action.data,
       };
     case types.CREATE_POST_DONE:
+      const postsList = [...state.postsList, action.data];
       return {
         ...state,
-        postsList: [...state, action.post],
+        postsList,
       };
     default:
       return state;
