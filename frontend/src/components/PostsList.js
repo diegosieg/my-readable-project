@@ -52,9 +52,7 @@ class PostsList extends Component {
           <div>
             {postsToDisplay.map(post => (
               <div className="c-posts-list-item" key={post.id}>
-                <Link to={`/post/${post.id}`}>
-                  <PostItem postId={post.id} />
-                </Link>
+                <PostItem postId={post.id} />
               </div>
             ))}
           </div>

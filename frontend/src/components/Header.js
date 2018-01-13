@@ -9,7 +9,7 @@ const Header = ({ categories }) => {
   return (
     <header className="c-app-header">
       <NavLink to="/">
-        <h1 className="c-app-header-title">hey yo!</h1>
+        <h1 className="c-app-header-title">Say yo!</h1>
       </NavLink>
       <ul>
         <li className="c-nav-item">

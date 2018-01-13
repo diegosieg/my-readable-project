@@ -64,10 +64,10 @@ const getCommentsByPost = postId => {
 
 /**
  * createPost
- * @param {Obj} data
- * @return {Array} posts array
+ * @param {Obj} postData
  */
 const createPost = postData => {
+  console.log('teste api');
   return fetch(`${API}/posts`, {
     method: 'POST',
     headers: HEADERS,
@@ -76,6 +76,20 @@ const createPost = postData => {
       id: v4(),
       timestamp: Date.now(),
     }),
+  }).then(results => results.json());
+};
+
+/**
+ * updatePost
+ * @param {Obj} postData {title, body, category, author}
+ */
+const updatePost = (id, postData) => {
+  const editedPost = { ...postData, timestamp: Date.now() };
+  console.log(editedPost);
+  return fetch(`${API}/posts/${id}`, {
+    method: 'PUT',
+    headers: HEADERS,
+    body: JSON.stringify(editedPost),
   }).then(results => results.json());
 };
 
@@ -88,4 +102,5 @@ export default {
   getPostContent,
   getCommentsByPost,
   createPost,
+  updatePost,
 };

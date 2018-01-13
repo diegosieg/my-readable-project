@@ -25,6 +25,18 @@ const createPostWithSuccess = data => {
   };
 };
 
+//edit post
+export const editPost = (id, post) => dispatch => {
+  api.updatePost(id, post).then(data => dispatch(editPostWithSuccess(data)));
+};
+
+const editPostWithSuccess = data => {
+  return {
+    type: types.EDIT_POST_DONE,
+    data,
+  };
+};
+
 // export const getPostContent = postId => dispatch => {
 //   api
 //     .getPostContent(postId)

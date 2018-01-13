@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { getCommentsByPost } from '../store/comments/actions';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VoteCounter from '../components/VoteCounter';
+import { MdCreate, MdDelete } from 'react-icons/lib/md';
 
 import './PostItem.css';
 import './PostView.css';
@@ -68,6 +70,17 @@ class PostView extends Component {
                 <Moment unix>{postDetails.timestamp / 1000}</Moment>
               </span>
             </p>
+            <div className="c-post-actions">
+              {/* <button onClick={this.onDelete} className="c-post-actions__link c-post-actions__link--delete"><MdDelete/><span>Delete</span></button> */}
+              <Link
+                to={`/edit/${postDetails.id}`}
+                className="c-post-actions__link c-post-actions__link--edit"
+              >
+                {' '}
+                <MdCreate />
+                <span>Edit</span>
+              </Link>
+            </div>
             <VoteCounter />
           </div>
         ) : (

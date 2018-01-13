@@ -45,6 +45,11 @@ class MainScreen extends Component {
               path="/create-post/"
               component={props => <PostForm {...props} />}
             />
+            <Route
+              exact
+              path="/edit/:id"
+              component={props => <PostForm {...props} />}
+            />
           </Switch>
         </div>
       </div>
