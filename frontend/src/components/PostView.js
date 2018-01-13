@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { getCommentsByPost } from '../store/comments/actions';
+import { getPostContent } from '../store/posts/actions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VoteCounter from '../components/VoteCounter';
@@ -28,8 +29,7 @@ class PostView extends Component {
     //console.log(params);
     if (params && params.id) {
       this.setState({ selectedPost: params.id });
-    } else {
-      this.setState({ selectedPost: '' });
+      props.getPostContent(params.id);
     }
   }
 
@@ -42,15 +42,11 @@ class PostView extends Component {
   };
 
   render() {
-    const { posts, comments } = this.props;
-    let postToDisplay;
-    let selectedPost = this.state.selectedPost;
+    const { posts, post, comments } = this.props;
+    let postToDisplay = post;
+    //let selectedPost = this.state.selectedPost;
 
-    if (selectedPost !== '') {
-      postToDisplay = posts.filter(post => post.id === selectedPost);
-    }
-
-    let postDetails = postToDisplay[0];
+    let postDetails = postToDisplay;
 
     // Set the output format for every react-moment instance.
     Moment.globalFormat = 'ddd DD MMM YYYY, HH:mm';
@@ -114,10 +110,12 @@ class PostView extends Component {
 const mapStateToProps = (state, props) => ({
   posts: state.posts.postsList,
   comments: state.comments.commentsList,
+  post: state.posts.post,
 });
 
 const mapDispatchToProps = dispatch => ({
   getCommentsByPost: postId => dispatch(getCommentsByPost(postId)),
+  getPostContent: postId => dispatch(getPostContent(postId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView);

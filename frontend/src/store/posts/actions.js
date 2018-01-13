@@ -37,16 +37,13 @@ const editPostWithSuccess = data => {
   };
 };
 
-// export const getPostContent = postId => dispatch => {
-//   api
-//     .getPostContent(postId)
-//     .then(post => dispatch(getPostContentDone(post, postId)));
-// };
+export const getPostContent = postId => dispatch => {
+  api.getPostContent(postId).then(data => dispatch(getPostContentDone(data)));
+};
 
-// const getPostContentDone = (post, postId) => {
-//   return {
-//     type: types.GET_POST_CONTENT_DONE,
-//     post,
-//     postId,
-//   };
-// };
+const getPostContentDone = data => {
+  return {
+    type: types.GET_POST_CONTENT_DONE,
+    data,
+  };
+};

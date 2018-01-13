@@ -5,15 +5,19 @@ import { findIndex } from 'lodash';
 //   postsList: [],
 // };
 
-const posts = (state = [], action = {}) => {
+export const posts = (state = [], action = {}) => {
   switch (action.type) {
     case types.GET_ALL_POSTS_DONE:
       return {
         ...state,
         postsList: action.data,
       };
+    case types.GET_POST_CONTENT_DONE:
+      return {
+        ...state,
+        post: action.data,
+      };
     case types.CREATE_POST_DONE:
-      //const postsList =
       return {
         ...state,
         postsList: [...state.postsList, action.data],
