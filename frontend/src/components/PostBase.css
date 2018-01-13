@@ -1,0 +1,39 @@
+.c-post__meta {
+  position: relative;
+}
+
+.c-post__info-box {
+  float: left;
+  width: 80%;
+  margin-top: -1.2rem;
+  margin-bottom: 1.6rem;
+}
+
+.c-post__counter {
+  width: 50px;
+  position: absolute;
+  right: 0;
+  top: -3.5rem;
+}
+
+.c-post__info {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.c-post__author {
+  text-transform: capitalize;
+  color: #27ae60;
+  opacity: 1;
+}
+.c-post__body {
+  float: left;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.c-post__no-comments {
+  font-size: 0.8rem;
+  color: #34495e;
+  opacity: 0.8;
+}

@@ -27,7 +27,7 @@ const Header = ({ categories }) => {
             <NavLink
               exact
               to={`/category/${category.path}`}
-              className={`c-nav-item-${category.path}`}
+              className={`c-tag--${category.path}`}
               activeClassName="selected"
             >
               {category.name}

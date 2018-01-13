@@ -46,3 +46,15 @@ body > div {
   margin: 1rem 0 0 -0.4rem;
   display: inline-block;
 }
+
+.c-tag--react {
+  background: #3498db !important;
+}
+
+.c-tag--redux {
+  background: #9b59b6 !important;
+}
+
+.c-tag--udacity {
+  background: #f39c12 !important;
+}

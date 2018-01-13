@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import MainScreen from './containers/MainScreen';
 
 import './App.css';
+import './components/PostBase.css';
 
 const App = () => {
   return (

@@ -57,27 +57,40 @@ class PostView extends Component {
       <div className="c-post-item c-post-view">
         {postDetails !== undefined ? (
           <div>
+            <span
+              className={`c-post-category__tag c-tag--${postDetails.category}`}
+            >
+              {postDetails.category}
+            </span>
             <h2>{postDetails.title}</h2>
-            <p>{postDetails.body}</p>
-            <p>
-              Created by: {postDetails.author}
-              <span>
-                {` - on `}
-                <Moment unix>{postDetails.timestamp / 1000}</Moment>
+            <div className="c-post__meta">
+              <span className="c-post__info-box">
+                <p className="c-post__info">
+                  Created by:{' '}
+                  <span className="c-post__author">{postDetails.author}</span>
+                  <span className="c-post__time">
+                    {` - on `}
+                    <Moment unix>{postDetails.timestamp / 1000}</Moment>
+                  </span>
+                </p>
+                <div className="c-post-actions">
+                  {/* <button onClick={this.onDelete} className="c-post-actions__link c-post-actions__link--delete"><MdDelete/><span>Delete</span></button> */}
+                  <Link
+                    to={`/edit/${postDetails.id}`}
+                    className="c-post-actions__link c-post-actions__link--edit"
+                  >
+                    {' '}
+                    <MdCreate />
+                    <span>Edit</span>
+                  </Link>
+                </div>
               </span>
-            </p>
-            <div className="c-post-actions">
-              {/* <button onClick={this.onDelete} className="c-post-actions__link c-post-actions__link--delete"><MdDelete/><span>Delete</span></button> */}
-              <Link
-                to={`/edit/${postDetails.id}`}
-                className="c-post-actions__link c-post-actions__link--edit"
-              >
-                {' '}
-                <MdCreate />
-                <span>Edit</span>
-              </Link>
+              <span className="c-post__counter">
+                <VoteCounter />
+              </span>
             </div>
-            <VoteCounter />
+
+            <p className="c-post__body">{postDetails.body}</p>
           </div>
         ) : (
           <span>Loading...</span>
@@ -100,7 +113,7 @@ class PostView extends Component {
             ))}
           </div>
         ) : (
-          <span>No comments yet!!!!</span>
+          <span className="c-post__no-comments">No comments yet!</span>
         )}
       </div>
     );

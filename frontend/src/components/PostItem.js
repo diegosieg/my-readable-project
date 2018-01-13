@@ -25,9 +25,10 @@ const PostItem = ({ posts, postId }) => {
     <div className="c-post-item">
       <Link to={`/post/${postDetails.id}`}>
         <h2 className="c-post-item-title">{postDetails.title}</h2>
-        <p>
-          Created by: {postDetails.author}
-          <span>
+        <p className="c-post__info">
+          Created by:{' '}
+          <span className="c-post__author">{postDetails.author}</span>
+          <span className="c-post__time">
             {` - on `}
             <Moment unix>{postDate}</Moment>
           </span>
@@ -45,11 +46,15 @@ const PostItem = ({ posts, postId }) => {
         </Link>
       </div>
       {/* <p>{postDetails.body}</p> */}
-      {postDetails.commentCount >= 1 ? (
-        <span>{`${postDetails.commentCount}  ${comments}`}</span>
-      ) : (
-        <span>No comments yet</span>
-      )}
+      <div className="c-post__comments">
+        <Link to={`/post/${postDetails.id}`}>
+          {postDetails.commentCount >= 1 ? (
+            <span>{`${postDetails.commentCount} ${comments}`}</span>
+          ) : (
+            <span>No comments yet</span>
+          )}
+        </Link>
+      </div>
     </div>
   );
 };

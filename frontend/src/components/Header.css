@@ -48,15 +48,3 @@
 .c-nav-item-all.active {
   margin-left: -20px;
 }
-
-.c-nav-item-react {
-  background: #3498db;
-}
-
-.c-nav-item-redux {
-  background: #9b59b6;
-}
-
-.c-nav-item-udacity {
-  background: #f39c12;
-}
