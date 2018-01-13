@@ -17,7 +17,14 @@ class MainScreen extends Component {
     };
   }
 
+  filterPost(posts, id) {
+    if (posts !== undefined) {
+      return posts.filter(post => post.id === id)[0];
+    }
+  }
+
   render() {
+    const { posts } = this.props;
     return (
       <div className="c-app-container">
         <Header />
@@ -48,7 +55,11 @@ class MainScreen extends Component {
             <Route
               exact
               path="/edit/:id"
-              component={props => <PostForm {...props} />}
+              render={({ match }) => (
+                <PostForm
+                  initialValues={this.filterPost(posts, match.params.id)}
+                />
+              )}
             />
           </Switch>
         </div>
