@@ -93,6 +93,18 @@ const updatePost = (id, postData) => {
   }).then(results => results.json());
 };
 
+/**
+ * removePost
+ * @param {string} postId
+ */
+const removePost = postId =>
+  fetch(`${API}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: HEADERS,
+  })
+    .then(results => results.json())
+    .then(data => data);
+
 //
 // Export Methods
 //
@@ -103,4 +115,5 @@ export default {
   getCommentsByPost,
   createPost,
   updatePost,
+  removePost,
 };

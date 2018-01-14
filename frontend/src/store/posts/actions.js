@@ -37,6 +37,7 @@ const editPostWithSuccess = data => {
   };
 };
 
+//get post content
 export const getPostContent = postId => dispatch => {
   api.getPostContent(postId).then(data => dispatch(getPostContentDone(data)));
 };
@@ -44,6 +45,18 @@ export const getPostContent = postId => dispatch => {
 const getPostContentDone = data => {
   return {
     type: types.GET_POST_CONTENT_DONE,
+    data,
+  };
+};
+
+// delete post
+export const deletePost = postId => dispatch => {
+  api.removePost(postId).then(() => dispatch(deletePostDone(postId)));
+};
+
+const deletePostDone = data => {
+  return {
+    type: types.DELETE_POST_DONE,
     data,
   };
 };

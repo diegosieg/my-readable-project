@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { getCommentsByPost } from '../store/comments/actions';
-import { getPostContent } from '../store/posts/actions';
+import { getPostContent, deletePost } from '../store/posts/actions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VoteCounter from '../components/VoteCounter';
@@ -42,7 +42,7 @@ class PostView extends Component {
   };
 
   render() {
-    const { posts, post, comments } = this.props;
+    const { posts, post, comments, deletePost, history } = this.props;
     let postToDisplay = post;
     //let selectedPost = this.state.selectedPost;
 
@@ -74,7 +74,20 @@ class PostView extends Component {
                   </span>
                 </p>
                 <div className="c-post-actions">
-                  {/* <button onClick={this.onDelete} className="c-post-actions__link c-post-actions__link--delete"><MdDelete/><span>Delete</span></button> */}
+                  <a
+                    href=""
+                    onClick={event => {
+                      event.preventDefault();
+                      if (window.confirm('Do you want to delete this post?')) {
+                        deletePost(postDetails.id);
+                        history.push('/');
+                      }
+                    }}
+                    className="c-post-actions__link c-post-actions__link--delete"
+                  >
+                    <MdDelete />
+                    <span>Delete</span>
+                  </a>
                   <Link
                     to={`/edit/${postDetails.id}`}
                     className="c-post-actions__link c-post-actions__link--edit"
@@ -95,26 +108,27 @@ class PostView extends Component {
         ) : (
           <span>Loading...</span>
         )}
-
-        {comments && comments.length > 1 ? (
-          <div>
-            <h4>Comments:</h4>
-            {comments.map(comment => (
-              <div className="c-posts-list-item" key={comment.id}>
-                <p>{comment.body}</p>
-                <p>
-                  by: {comment.author}{' '}
-                  <span>
-                    {` - on `}
-                    <Moment unix>{comment.timestamp / 1000}</Moment>
-                  </span>
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <span className="c-post__no-comments">No comments yet!</span>
-        )}
+        <div className="c-post__coments">
+          {comments && comments.length > 1 ? (
+            <div>
+              <h4>Comments:</h4>
+              {comments.map(comment => (
+                <div className="c-posts-list-item" key={comment.id}>
+                  <p>{comment.body}</p>
+                  <p>
+                    by: {comment.author}{' '}
+                    <span>
+                      {` - on `}
+                      <Moment unix>{comment.timestamp / 1000}</Moment>
+                    </span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <span className="c-post__no-comments">No comments yet!</span>
+          )}
+        </div>
       </div>
     );
   }
@@ -129,6 +143,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
   getCommentsByPost: postId => dispatch(getCommentsByPost(postId)),
   getPostContent: postId => dispatch(getPostContent(postId)),
+  deletePost: postId => dispatch(deletePost(postId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView);

@@ -37,7 +37,11 @@ export const posts = (state = [], action = {}) => {
           ...state.postsList.slice(index + 1),
         ],
       };
-
+    case types.DELETE_POST_DONE:
+      return {
+        ...state,
+        postsList: [...state.postsList.filter(post => post.id !== action.data)],
+      };
     default:
       return state;
   }

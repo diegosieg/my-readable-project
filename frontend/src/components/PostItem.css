@@ -4,6 +4,10 @@
   padding: 1em;
 }
 
+.c-post-item div {
+  position: relative;
+}
+
 .c-post-item > div:after {
   content: '';
   display: table;
@@ -12,4 +16,9 @@
 
 .c-post-item-title {
   text-decoration: underline;
+}
+
+.c-post__comments {
+  float: left;
+  width: 100%;
 }
