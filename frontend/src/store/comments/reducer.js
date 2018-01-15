@@ -1,25 +1,29 @@
 import * as types from './actionTypes';
+import { findIndex } from 'lodash';
 
-const initialState = {
-  posts: [],
-};
-
-const comments = (state = initialState, action = {}) => {
+const comments = (state = [], action = {}) => {
   switch (action.type) {
     case types.GET_COMMENTS_BY_POST_DONE:
       const comments = action.comments;
-      return comments.reduce(
-        (newCommentsState, comment) => ({
-          ...newCommentsState,
-          commentsList: comments,
-        }),
-        {},
-      );
+      const parentId = action.postId;
 
-    // return {
-    //   ...state,
-    //   commentsList: action.comments,
-    // };
+      return [...comments.filter(x => x.parentId !== parentId), ...comments];
+
+    case types.CREATE_COMMENT_DONE:
+      return [...state, action.data];
+
+    case types.EDIT_COMMENT_DONE:
+      let index = findIndex(state, comment => comment.id === action.data.id);
+      return [
+        // slice the edited comment to keep the right position
+        ...state.slice(0, index),
+        { ...action.data },
+        ...state.slice(index + 1),
+      ];
+
+    case types.DELETE_COMMENT_DONE:
+      return [...state.filter(comment => comment.id !== action.data)];
+
     default:
       return state;
   }

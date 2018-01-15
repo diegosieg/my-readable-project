@@ -2,9 +2,15 @@
   color: #2c3e50;
   margin: 3.5em 2.5em 10em 1.5em;
 }
+.c-post-form__container--comments {
+  margin: 3.5em 0.5em 10em 0.5em;
+}
 @media (min-width: 550px) {
   .c-post-form__container {
     margin: 3.5em 2.5em;
+  }
+  .c-post-form__container--comments {
+    margin: 3.5em 1.5em;
   }
 }
 

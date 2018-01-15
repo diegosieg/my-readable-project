@@ -24,26 +24,6 @@ const renderField = ({
 );
 
 class PostForm extends Component {
-  componentDidMount() {
-    this.displayPostContentToEdit(this.props);
-  }
-
-  displayPostContentToEdit(props) {
-    const { params } = props.match;
-    const { posts } = props;
-    //console.log(params);
-    if (params && params.id) {
-      if (posts !== undefined) {
-        //console.log(posts);
-        //console.log(params.id);
-        const postToEdit = posts.filter(post => post.id === params.id);
-        console.log(postToEdit);
-      }
-    } else {
-      return;
-    }
-  }
-
   render() {
     const {
       handleSubmit,

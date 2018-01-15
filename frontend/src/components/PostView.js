@@ -5,6 +5,7 @@ import { getPostContent, deletePost } from '../store/posts/actions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VoteCounter from '../components/VoteCounter';
+import CommentList from '../components/CommentList';
 import { MdCreate, MdDelete } from 'react-icons/lib/md';
 
 import './PostItem.css';
@@ -42,7 +43,7 @@ class PostView extends Component {
   };
 
   render() {
-    const { posts, post, comments, deletePost, history } = this.props;
+    const { post, deletePost, history } = this.props;
     let postToDisplay = post;
     //let selectedPost = this.state.selectedPost;
 
@@ -108,27 +109,7 @@ class PostView extends Component {
         ) : (
           <span>Loading...</span>
         )}
-        <div className="c-post__coments">
-          {comments && comments.length > 1 ? (
-            <div>
-              <h4>Comments:</h4>
-              {comments.map(comment => (
-                <div className="c-posts-list-item" key={comment.id}>
-                  <p>{comment.body}</p>
-                  <p>
-                    by: {comment.author}{' '}
-                    <span>
-                      {` - on `}
-                      <Moment unix>{comment.timestamp / 1000}</Moment>
-                    </span>
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <span className="c-post__no-comments">No comments yet!</span>
-          )}
-        </div>
+        <CommentList />
       </div>
     );
   }

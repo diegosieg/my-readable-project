@@ -67,7 +67,6 @@ const getCommentsByPost = postId => {
  * @param {Obj} postData
  */
 const createPost = postData => {
-  console.log('teste api');
   return fetch(`${API}/posts`, {
     method: 'POST',
     headers: HEADERS,
@@ -85,7 +84,6 @@ const createPost = postData => {
  */
 const updatePost = (id, postData) => {
   const editedPost = { ...postData, timestamp: Date.now() };
-  console.log(editedPost);
   return fetch(`${API}/posts/${id}`, {
     method: 'PUT',
     headers: HEADERS,
@@ -97,13 +95,56 @@ const updatePost = (id, postData) => {
  * removePost
  * @param {string} postId
  */
-const removePost = postId =>
+const removePost = postId => {
   fetch(`${API}/posts/${postId}`, {
     method: 'DELETE',
     headers: HEADERS,
   })
     .then(results => results.json())
     .then(data => data);
+};
+/**
+ * createComment
+ * @param {Obj} commentData
+ */
+const createComment = (postId, commentData) => {
+  return fetch(`${API}/comments`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({
+      ...commentData,
+      parentId: postId,
+      id: v4(),
+      timestamp: Date.now(),
+    }),
+  }).then(results => results.json());
+};
+
+/**
+ * updateComment
+ * @param {Obj} commentData
+ */
+const updateComment = (id, commentData) => {
+  const editedComment = { ...commentData, timestamp: Date.now() };
+  return fetch(`${API}/comments/${id}`, {
+    method: 'PUT',
+    headers: HEADERS,
+    body: JSON.stringify(editedComment),
+  }).then(results => results.json());
+};
+
+/**
+ * removeComment
+ * @param {Obj} commentId
+ */
+const removeComment = commentId => {
+  return fetch(`${API}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers: HEADERS,
+  })
+    .then(results => results.json())
+    .then(data => data);
+};
 
 //
 // Export Methods
@@ -116,4 +157,7 @@ export default {
   createPost,
   updatePost,
   removePost,
+  createComment,
+  updateComment,
+  removeComment,
 };

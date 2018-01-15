@@ -18,6 +18,7 @@ class MainScreen extends Component {
   }
 
   filterPost(posts, id) {
+    console.log('test');
     if (posts !== undefined) {
       return posts.filter(post => post.id === id)[0];
     }

@@ -8,7 +8,8 @@
   position: relative;
 }
 
-.c-post-item > div:after {
+.c-post-item > div:after,
+.c-posts-list-item:after {
   content: '';
   display: table;
   clear: both;
@@ -21,4 +22,14 @@
 .c-post__comments {
   float: left;
   width: 100%;
+}
+
+.c-comment-actions {
+  margin-top: 2rem;
+  margin-bottom: -1rem;
+}
+
+.c-post-section-comment__title {
+  margin-bottom: -1rem;
+  color: #7f8c8d;
 }

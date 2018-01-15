@@ -20,7 +20,6 @@ const PostItem = ({ posts, postId, history, deletePost }) => {
   }
   let postDetails = myPostItem[0];
   //console.log(postDetails);
-  let postDate = postDetails.timestamp / 1000;
   let comments = postDetails.commentCount === 1 ? 'comment' : 'comments';
 
   function onDeletePost() {
