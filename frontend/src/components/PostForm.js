@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import './PostForm.css';
@@ -24,18 +24,6 @@ const renderField = ({
 );
 
 class PostForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      postForm: {
-        title: '',
-        body: '',
-        author: '',
-        category: '',
-      },
-    };
-  }
-
   componentDidMount() {
     this.displayPostContentToEdit(this.props);
   }
@@ -49,7 +37,6 @@ class PostForm extends Component {
         //console.log(posts);
         //console.log(params.id);
         const postToEdit = posts.filter(post => post.id === params.id);
-        this.setState({ postForm: postToEdit });
         console.log(postToEdit);
       }
     } else {
@@ -63,7 +50,6 @@ class PostForm extends Component {
       createNewPost,
       editPost,
       categories,
-      reset,
       submitting,
       match,
       history,
@@ -73,20 +59,6 @@ class PostForm extends Component {
     //console.log(isEditMode);
     const submitBtn = isEditMode ? 'Save' : 'Publish';
     const postFormTitle = isEditMode ? 'Edit your post' : 'Create a new post';
-
-    let pForm = this.state.postForm[0];
-    let pTitle;
-    let pBody;
-    let pAuthor;
-    let pCategory;
-
-    if (isEditMode) {
-      if (pForm !== undefined) {
-        console.log(this.state.postForm[0]);
-        pTitle = this.state.postForm[0].title;
-        console.log(pTitle);
-      }
-    }
 
     return (
       <div className="c-post-form__container">
@@ -108,7 +80,7 @@ class PostForm extends Component {
               history.goBack();
             } else {
               editPost(match.params.id, postData);
-              console.log(postData);
+              //console.log(postData);
               history.goBack();
             }
           })}
