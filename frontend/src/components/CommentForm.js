@@ -32,9 +32,11 @@ class CommentForm extends Component {
       submitting,
       reset,
       match,
+      isEditMode,
+      commentSelected,
     } = this.props;
 
-    const isEditMode = match.url.indexOf('edit') !== -1;
+    //const isEditMode = match.url.indexOf('edit') !== -1;
     //console.log(isEditMode);
     const submitBtn = isEditMode ? 'Save' : 'Publish';
     const commentFormTitle = isEditMode
@@ -54,7 +56,7 @@ class CommentForm extends Component {
             if (!isEditMode) {
               createNewComment(match.params.id, commentData);
             } else {
-              editComment(match.params.id, commentData);
+              editComment(commentSelected, commentData);
               //console.log(commentData);
             }
             reset();

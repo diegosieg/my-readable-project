@@ -11,6 +11,23 @@ import './PostItem.css';
 import './PostView.css';
 
 class CommentList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isEditMode: false,
+      commentSelected: null,
+    };
+  }
+
+  filterComments(comments, id) {
+    console.log(comments);
+    if (comments !== undefined) {
+      let test = comments.filter(comment => comment.id === id)[0];
+      console.log(test);
+      return test;
+    }
+  }
+
   render() {
     const { comments, deleteComment } = this.props;
 
@@ -54,14 +71,21 @@ class CommentList extends Component {
                         <MdDelete />
                         <span>Delete</span>
                       </a>
-                      <Link
-                        to={`/comment-edit/${comment.id}`}
+                      <a
+                        href=""
+                        onClick={eventComment => {
+                          eventComment.preventDefault();
+                          this.setState({
+                            isEditMode: true,
+                            commentSelected: comment.id,
+                          });
+                        }}
                         className="c-post-actions__link c-post-actions__link--edit"
                       >
                         {' '}
                         <MdCreate />
                         <span>Edit</span>
-                      </Link>
+                      </a>
                     </div>
                   </span>
                   <span className="c-post__counter">
@@ -70,7 +94,22 @@ class CommentList extends Component {
                 </div>
               </div>
             ))}
-            <CommentForm />
+            {this.state.isEditMode ? (
+              <div>
+                <CommentForm
+                  commentSelected={this.state.commentSelected}
+                  isEditMode={this.state.isEditMode}
+                  initialValues={this.filterComments(
+                    comments,
+                    this.state.commentSelected,
+                  )}
+                />
+              </div>
+            ) : (
+              <div>
+                <CommentForm />
+              </div>
+            )}
           </div>
         ) : (
           <div>

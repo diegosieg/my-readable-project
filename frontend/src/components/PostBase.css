@@ -37,3 +37,11 @@
   color: #34495e;
   opacity: 0.8;
 }
+
+.c-posts-list-item a,
+.c-posts-list-item a:visited,
+.c-post-actions__link,
+.c-post-actions__link:visited {
+  color: #2c3e50;
+  text-decoration: none;
+}
