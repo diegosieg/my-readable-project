@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { deleteComment } from '../store/comments/actions';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VoteCounter from '../components/VoteCounter';
 import CommentForm from '../components/CommentForm';
+import scrollToComponent from 'react-scroll-to-component';
 import { MdCreate, MdDelete } from 'react-icons/lib/md';
 
 import './PostItem.css';
@@ -17,15 +17,21 @@ class CommentList extends Component {
       isEditMode: false,
       commentSelected: null,
     };
+    this.handlerSave = this.handlerSave.bind(this);
   }
 
   filterComments(comments, id) {
-    console.log(comments);
+    //console.log(comments);
     if (comments !== undefined) {
-      let test = comments.filter(comment => comment.id === id)[0];
-      console.log(test);
-      return test;
+      return comments.filter(comment => comment.id === id)[0];
     }
+  }
+
+  handlerSave() {
+    //console.log('yo');
+    this.setState({
+      isEditMode: false,
+    });
   }
 
   render() {
@@ -74,11 +80,16 @@ class CommentList extends Component {
                       <a
                         href=""
                         onClick={eventComment => {
-                          eventComment.preventDefault();
+                          scrollToComponent(this.EditCommentBox, {
+                            offset: 100,
+                            align: 'bottom',
+                            duration: 500,
+                          });
                           this.setState({
                             isEditMode: true,
                             commentSelected: comment.id,
                           });
+                          eventComment.preventDefault();
                         }}
                         className="c-post-actions__link c-post-actions__link--edit"
                       >
@@ -97,12 +108,20 @@ class CommentList extends Component {
             {this.state.isEditMode ? (
               <div>
                 <CommentForm
+                  ref={section => {
+                    this.EditCommentBox = section;
+                  }}
                   commentSelected={this.state.commentSelected}
                   isEditMode={this.state.isEditMode}
-                  initialValues={this.filterComments(
-                    comments,
-                    this.state.commentSelected,
-                  )}
+                  action={this.handlerSave}
+                  initialValues={
+                    this.state.isEditMode
+                      ? this.filterComments(
+                          comments,
+                          this.state.commentSelected,
+                        )
+                      : {}
+                  }
                 />
               </div>
             ) : (

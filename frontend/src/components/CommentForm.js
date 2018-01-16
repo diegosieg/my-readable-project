@@ -32,12 +32,12 @@ class CommentForm extends Component {
       submitting,
       reset,
       match,
+      history,
       isEditMode,
       commentSelected,
     } = this.props;
 
-    //const isEditMode = match.url.indexOf('edit') !== -1;
-    //console.log(isEditMode);
+    //console.log(this.props.initialValues);
     const submitBtn = isEditMode ? 'Save' : 'Publish';
     const commentFormTitle = isEditMode
       ? 'Edit your comment'
@@ -57,7 +57,8 @@ class CommentForm extends Component {
               createNewComment(match.params.id, commentData);
             } else {
               editComment(commentSelected, commentData);
-              //console.log(commentData);
+              history.goBack();
+              // console.log(commentData);
             }
             reset();
           })}
@@ -80,17 +81,36 @@ class CommentForm extends Component {
             placeholder="Your name..."
           />
 
-          <button
-            className="c-btn c-btn__submit"
-            type="submit"
-            disabled={submitting}
-          >
-            {submitBtn}
-          </button>
+          {isEditMode ? (
+            <div>
+              <button
+                className="c-btn c-btn__submit"
+                type="submit"
+                onClick={this.props.action}
+                disabled={submitting}
+              >
+                {submitBtn}
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button
+                className="c-btn c-btn__submit"
+                type="submit"
+                disabled={submitting}
+              >
+                {submitBtn}
+              </button>
 
-          <button className="c-btn c-btn__cancel" type="button" onClick={reset}>
-            Cancel
-          </button>
+              <button
+                className="c-btn c-btn__cancel"
+                type="button"
+                onClick={reset}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
         </form>
       </div>
     );
