@@ -58,3 +58,15 @@ body > div {
 .c-tag--udacity {
   background: #f39c12 !important;
 }
+
+.c-sort-by_box {
+  position: absolute;
+  right: 3em;
+  top: 2em;
+}
+
+.c-sort-by_box span {
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: right;
+}

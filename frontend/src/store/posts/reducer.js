@@ -1,7 +1,17 @@
 import * as types from './actionTypes';
-import { findIndex } from 'lodash';
+import { findIndex, orderBy } from 'lodash';
 
-export const posts = (state = [], action = {}) => {
+export const posts = (
+  state = {
+    postsList: [],
+    post: {},
+    sortBy: {
+      value: 'timestamp-desc',
+      direction: 0,
+    },
+  },
+  action = {},
+) => {
   switch (action.type) {
     case types.GET_ALL_POSTS_DONE:
       return {
@@ -41,6 +51,23 @@ export const posts = (state = [], action = {}) => {
         ...state,
         postsList: [...state.postsList.filter(post => post.id !== action.data)],
       };
+
+    case types.SORT_POSTS_DONE:
+      let sortDirection = action.data.indexOf('desc') !== -1 ? 0 : 1;
+      let orderValue = action.data.slice(5);
+
+      return {
+        postsList: orderBy(
+          [...state.postsList],
+          [orderValue],
+          [sortDirection === 1 ? 'asc' : 'desc'],
+        ),
+        sortBy: {
+          value: action.data,
+          sortDirection,
+        },
+      };
+
     default:
       return state;
   }

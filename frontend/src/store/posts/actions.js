@@ -60,3 +60,8 @@ const deletePostDone = data => {
     data,
   };
 };
+
+//sort posts by
+export const sortPostsBy = data => {
+  return { type: types.SORT_POSTS_DONE, data };
+};
