@@ -11,7 +11,7 @@ const options = [
 
 class SortBy extends Component {
   render() {
-    const { postsSortedBy, sortPostsBy } = this.props;
+    const { sortPostsBy } = this.props;
     return (
       <div className="c-sort-by_box">
         <span>Sort by</span>

@@ -70,7 +70,10 @@ const PostItem = ({ posts, postId, history, deletePost }) => {
             </div>
           </span>
           <span className="c-post__counter">
-            <VoteCounter />
+            <VoteCounter
+              postId={postDetails.id}
+              voteValue={postDetails.voteScore}
+            />
           </span>
         </div>
 

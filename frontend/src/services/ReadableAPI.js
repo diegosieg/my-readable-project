@@ -103,6 +103,22 @@ const removePost = postId => {
     .then(results => results.json())
     .then(data => data);
 };
+
+/**
+ * ratePost
+ * @param {string} postId
+ * @param {string} vote
+ */
+const ratePostApi = (postId, vote) => {
+  fetch(`${API}/posts/${postId}`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({
+      option: vote,
+    }),
+  }).then(results => results.json());
+};
+
 /**
  * createComment
  * @param {Obj} commentData
@@ -160,4 +176,5 @@ export default {
   createComment,
   updateComment,
   removeComment,
+  ratePostApi,
 };

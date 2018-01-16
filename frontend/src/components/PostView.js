@@ -100,7 +100,7 @@ class PostView extends Component {
                 </div>
               </span>
               <span className="c-post__counter">
-                <VoteCounter />
+                <VoteCounter postId={post.id} voteValue={post.voteScore} />
               </span>
             </div>
 

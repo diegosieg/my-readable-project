@@ -68,6 +68,22 @@ export const posts = (
         },
       };
 
+    case types.RATE_POST_DONE: {
+      let index = findIndex(
+        state.postsList,
+        post => post.id === action.data.id,
+      );
+      return {
+        ...state,
+        postsList: [
+          ...state.postsList.slice(0, index),
+          { ...action.data },
+          ...state.postsList.slice(index + 1),
+        ],
+        post: { ...action.data },
+      };
+    }
+
     default:
       return state;
   }

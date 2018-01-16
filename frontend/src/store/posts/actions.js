@@ -65,3 +65,16 @@ const deletePostDone = data => {
 export const sortPostsBy = data => {
   return { type: types.SORT_POSTS_DONE, data };
 };
+
+//votePost
+export const ratingPost = (postId, vote) => dispatch => {
+  console.log(postId);
+  console.log(vote);
+  api
+    .ratePostApi(postId, vote)
+    .then(({ postId }) => dispatch(ratePostDone(postId)));
+};
+
+function ratePostDone(data) {
+  return { type: types.RATE_POST_DONE, data };
+}

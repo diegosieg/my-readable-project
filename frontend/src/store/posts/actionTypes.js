@@ -6,3 +6,4 @@ export const EDIT_POST_DONE = 'posts.EDIT_POST_DONE';
 export const GET_POST_CONTENT_DONE = 'posts.GET_POST_CONTENT_DONE';
 export const DELETE_POST_DONE = 'posts.DELETE_POST_DONE';
 export const SORT_POSTS_DONE = 'posts.SORT_POSTS_DONE';
+export const RATE_POST_DONE = 'posts.RATE_POST_DONE';
