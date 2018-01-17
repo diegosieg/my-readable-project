@@ -26,7 +26,7 @@ class VoteCounter extends Component {
   };
 
   render() {
-    const { votes } = this.state;
+    //const { votes } = this.state;
     const { voteValue, postId } = this.props;
 
     const valueStyle = () => {

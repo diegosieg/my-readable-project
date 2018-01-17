@@ -68,13 +68,12 @@ export const sortPostsBy = data => {
 
 //votePost
 export const ratingPost = (postId, vote) => dispatch => {
-  console.log(postId);
-  console.log(vote);
-  api
-    .ratePostApi(postId, vote)
-    .then(({ postId }) => dispatch(ratePostDone(postId)));
+  api.ratePostApi(postId, vote).then(data => dispatch(ratePostDone(data)));
 };
 
-function ratePostDone(data) {
-  return { type: types.RATE_POST_DONE, data };
-}
+const ratePostDone = data => {
+  return {
+    type: types.RATE_POST_DONE,
+    data,
+  };
+};

@@ -71,7 +71,7 @@ export const posts = (
     case types.RATE_POST_DONE: {
       let index = findIndex(
         state.postsList,
-        post => post.id === action.data.id,
+        item => item.id === action.data.id,
       );
       return {
         ...state,

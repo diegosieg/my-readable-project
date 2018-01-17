@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import PostItem from '../components/PostItem';
-import SortBy from '../components/SortBy';
 import { MdAddBox } from 'react-icons/lib/md';
 
 import './PostsList.css';
@@ -48,7 +47,6 @@ class PostsList extends Component {
 
     return (
       <div className="c-posts-list">
-        <SortBy />
         <h2 className="c-posts-list-title">{`${selectedCategory} articles`}</h2>
         {postsToDisplay && postsToDisplay.length > 0 ? (
           <div>

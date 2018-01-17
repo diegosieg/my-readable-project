@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import { MdAddBox } from 'react-icons/lib/md';
 import Header from '../components/Header';
+import SortBy from '../components/SortBy';
 import PostsList from '../components/PostsList';
 import PostView from '../components/PostView';
 import PostForm from '../components/PostForm';
@@ -34,6 +35,7 @@ class MainScreen extends Component {
             <span>Add new post</span>
           </Link>
         </div>
+        <SortBy />
         <div className="c-app-main">
           <Switch>
             <Route exact path="/" render={props => <PostsList {...props} />} />

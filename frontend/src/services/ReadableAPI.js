@@ -110,7 +110,7 @@ const removePost = postId => {
  * @param {string} vote
  */
 const ratePostApi = (postId, vote) => {
-  fetch(`${API}/posts/${postId}`, {
+  return fetch(`${API}/posts/${postId}`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify({
