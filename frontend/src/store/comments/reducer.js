@@ -24,6 +24,10 @@ const comments = (state = [], action = {}) => {
     case types.DELETE_COMMENT_DONE:
       return [...state.filter(comment => comment.id !== action.data)];
 
+    case types.RATE_COMMENT_DONE:
+      let i = findIndex(state, comment => comment.id === action.data.id);
+      return [...state.slice(0, i), { ...action.data }, ...state.slice(i + 1)];
+
     default:
       return state;
   }

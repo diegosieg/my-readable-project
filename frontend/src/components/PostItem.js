@@ -71,6 +71,7 @@ const PostItem = ({ posts, postId, history, deletePost }) => {
           </span>
           <span className="c-post__counter">
             <VoteCounter
+              typeSection={'post'}
               postId={postDetails.id}
               voteValue={postDetails.voteScore}
             />

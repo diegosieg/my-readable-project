@@ -162,6 +162,21 @@ const removeComment = commentId => {
     .then(data => data);
 };
 
+/**
+ * rateComment
+ * @param {string} commentId
+ * @param {string} vote
+ */
+const rateCommentApi = (commentId, vote) => {
+  return fetch(`${API}/comments/${commentId}`, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({
+      option: vote,
+    }),
+  }).then(results => results.json());
+};
+
 //
 // Export Methods
 //
@@ -173,8 +188,9 @@ export default {
   createPost,
   updatePost,
   removePost,
+  ratePostApi,
   createComment,
   updateComment,
   removeComment,
-  ratePostApi,
+  rateCommentApi,
 };

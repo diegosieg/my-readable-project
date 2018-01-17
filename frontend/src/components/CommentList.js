@@ -100,7 +100,11 @@ class CommentList extends Component {
                     </div>
                   </span>
                   <span className="c-post__counter">
-                    <VoteCounter />
+                    <VoteCounter
+                      typeSection={'comment'}
+                      commentId={comment.id}
+                      voteValue={comment.voteScore}
+                    />
                   </span>
                 </div>
               </div>

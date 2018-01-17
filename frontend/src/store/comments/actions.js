@@ -44,7 +44,7 @@ const editCommentWithSuccess = data => {
   };
 };
 
-// delete post
+// delete comment
 export const deleteComment = commentId => dispatch => {
   api
     .removeComment(commentId)
@@ -54,6 +54,20 @@ export const deleteComment = commentId => dispatch => {
 const deleteCommentDone = data => {
   return {
     type: types.DELETE_COMMENT_DONE,
+    data,
+  };
+};
+
+// voteComment
+export const ratingComment = (commentId, vote) => dispatch => {
+  api
+    .rateCommentApi(commentId, vote)
+    .then(data => dispatch(rateCommentDone(data)));
+};
+
+const rateCommentDone = data => {
+  return {
+    type: types.RATE_COMMENT_DONE,
     data,
   };
 };

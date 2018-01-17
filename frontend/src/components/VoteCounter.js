@@ -2,32 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/lib/md';
 import { ratingPost } from '../store/posts/actions';
+import { ratingComment } from '../store/comments/actions';
 import './VoteCounter.css';
 
 class VoteCounter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      votes: 0,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ votes: this.props.voteValue });
-  }
-
   incrementVote = (postId, vote) => {
     this.props.ratingPost(postId, vote);
-    //this.setState({ votes: this.state.votes + 1 });
   };
   decreaseVote = (postId, vote) => {
     this.props.ratingPost(postId, vote);
-    //this.setState({ votes: this.state.votes - 1 });
+  };
+
+  incrementComment = (commentId, vote) => {
+    this.props.ratingComment(commentId, vote);
+  };
+  decreaseComment = (commentId, vote) => {
+    this.props.ratingComment(commentId, vote);
   };
 
   render() {
-    //const { votes } = this.state;
-    const { voteValue, postId } = this.props;
+    const { voteValue, postId, commentId, typeSection } = this.props;
 
     const valueStyle = () => {
       const valueName =
@@ -39,21 +33,41 @@ class VoteCounter extends Component {
 
     return (
       <div className="c-vote-counter">
-        {postId !== undefined ? (
+        {postId !== undefined || commentId !== undefined ? (
           <div>
-            <button
-              className="c-vote-counter-button"
-              onClick={() => this.incrementVote(postId, 'upVote')}
-            >
-              <MdKeyboardArrowUp />
-            </button>
-            <h2 className={valueStyle()}>{voteValue}</h2>
-            <button
-              className="c-vote-counter-button"
-              onClick={() => this.decreaseVote(postId, 'downVote')}
-            >
-              <MdKeyboardArrowDown />
-            </button>
+            {typeSection === 'post' ? (
+              <div>
+                <button
+                  className="c-vote-counter-button"
+                  onClick={() => this.incrementVote(postId, 'upVote')}
+                >
+                  <MdKeyboardArrowUp />
+                </button>
+                <h2 className={valueStyle()}>{voteValue}</h2>
+                <button
+                  className="c-vote-counter-button"
+                  onClick={() => this.decreaseVote(postId, 'downVote')}
+                >
+                  <MdKeyboardArrowDown />
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  className="c-vote-counter-button"
+                  onClick={() => this.incrementComment(commentId, 'upVote')}
+                >
+                  <MdKeyboardArrowUp />
+                </button>
+                <h2 className={valueStyle()}>{voteValue}</h2>
+                <button
+                  className="c-vote-counter-button"
+                  onClick={() => this.decreaseComment(commentId, 'downVote')}
+                >
+                  <MdKeyboardArrowDown />
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <p>loading</p>
@@ -70,6 +84,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   ratingPost: (postId, vote) => dispatch(ratingPost(postId, vote)),
+  ratingComment: (commentId, vote) => dispatch(ratingComment(commentId, vote)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoteCounter);
