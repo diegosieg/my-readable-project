@@ -31,13 +31,13 @@ class CommentForm extends Component {
       editComment,
       submitting,
       reset,
-      match,
-      history,
+      pristine,
       isEditMode,
-      commentSelected,
+      postId,
+      hideForm,
+      idToEdit,
     } = this.props;
 
-    //console.log(this.props.initialValues);
     const submitBtn = isEditMode ? 'Save' : 'Publish';
     const commentFormTitle = isEditMode
       ? 'Edit your comment'
@@ -50,17 +50,18 @@ class CommentForm extends Component {
           className="c-post-form__main"
           onSubmit={handleSubmit(commentData => {
             const { body, author } = commentData;
-
             commentData = { body, author };
 
             if (!isEditMode) {
-              createNewComment(match.params.id, commentData);
+              console.log('create');
+              createNewComment(postId, commentData);
             } else {
-              editComment(commentSelected, commentData);
-              history.goBack();
+              console.log('edit');
+              editComment(idToEdit, commentData);
               // console.log(commentData);
             }
             reset();
+            hideForm();
           })}
         >
           <div>
@@ -87,9 +88,16 @@ class CommentForm extends Component {
                 className="c-btn c-btn__submit"
                 type="submit"
                 onClick={this.props.action}
-                disabled={submitting}
+                disabled={pristine || submitting}
               >
                 {submitBtn}
+              </button>
+              <button
+                className="c-btn c-btn__cancel"
+                type="button"
+                onClick={hideForm}
+              >
+                Cancel
               </button>
             </div>
           ) : (
@@ -97,7 +105,7 @@ class CommentForm extends Component {
               <button
                 className="c-btn c-btn__submit"
                 type="submit"
-                disabled={submitting}
+                disabled={pristine || submitting}
               >
                 {submitBtn}
               </button>
@@ -105,7 +113,7 @@ class CommentForm extends Component {
               <button
                 className="c-btn c-btn__cancel"
                 type="button"
-                onClick={reset}
+                onClick={hideForm}
               >
                 Cancel
               </button>

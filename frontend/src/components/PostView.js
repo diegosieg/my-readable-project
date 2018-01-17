@@ -113,7 +113,7 @@ class PostView extends Component {
         ) : (
           <span>Loading...</span>
         )}
-        <CommentList />
+        <CommentList postId={postDetails.id} />
       </div>
     );
   }

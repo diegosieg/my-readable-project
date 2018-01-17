@@ -45,3 +45,10 @@
   color: #2c3e50;
   text-decoration: none;
 }
+
+.c-post-actions__link--create {
+  text-decoration: underline;
+  margin-top: 2rem;
+  display: inline-block;
+  color: #2980b9 !important;
+}
