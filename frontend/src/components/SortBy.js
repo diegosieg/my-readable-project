@@ -11,12 +11,13 @@ const options = [
 
 class SortBy extends Component {
   render() {
-    const { sortPostsBy } = this.props;
+    const { sortPostsBy, postsSortedBy } = this.props;
     return (
       <div className="c-sort-by_box">
         <span>Sort by</span>
         <div className="c-sort-by-input">
           <select
+            value={postsSortedBy.value}
             onChange={e => {
               sortPostsBy(e.target.value);
             }}
