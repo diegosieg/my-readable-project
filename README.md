@@ -1,4 +1,4 @@
-#Readable Project
+# Readable Project
 
 This is a fork from the final assessment project for Udacity's React & Redux course, developed by [React Training](https://reacttraining.com).
 The project is a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts and vote on posts and comments. Users will also be able to edit and delete posts and comments.
