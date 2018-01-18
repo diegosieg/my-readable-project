@@ -37,7 +37,7 @@ const PostItem = ({ posts, postId, history, deletePost }) => {
         <span className={`c-post-category__tag c-tag--${postDetails.category}`}>
           {postDetails.category}
         </span>
-        <Link to={`/post/${postDetails.id}`}>
+        <Link to={`/${postDetails.category}/post/${postDetails.id}`}>
           <h2 className="c-post-item-title">{postDetails.title}</h2>
         </Link>
         <div className="c-post__meta">
@@ -79,7 +79,7 @@ const PostItem = ({ posts, postId, history, deletePost }) => {
         </div>
 
         <div className="c-post__comments">
-          <Link to={`/post/${postDetails.id}`}>
+          <Link to={`/${postDetails.category}/post/${postDetails.id}`}>
             {postDetails.commentCount >= 1 ? (
               <span>{`${postDetails.commentCount} ${comments}`}</span>
             ) : (

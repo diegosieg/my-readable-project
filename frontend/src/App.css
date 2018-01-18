@@ -70,3 +70,23 @@ body > div {
   display: block;
   text-align: right;
 }
+
+.c-page-not-found {
+  color: #2c3e50;
+  margin: 3.5em 2.5em 10em 2.5em;
+  text-align: center;
+}
+
+@media (min-width: 550px) {
+  .c-page-not-found {
+    margin: 3.5em 2.5em;
+  }
+}
+.c-page-not-found h2 {
+  margin-bottom: 6rem;
+}
+
+.c-page-not-found a {
+  color: #2980b9;
+  text-decoration: none;
+}

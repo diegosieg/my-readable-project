@@ -51,7 +51,8 @@ const getPostContentDone = data => {
 
 // delete post
 export const deletePost = postId => dispatch => {
-  api.removePost(postId).then(() => dispatch(deletePostDone(postId)));
+  console.log(postId);
+  api.removePost(postId).then(data => dispatch(deletePostDone(data)));
 };
 
 const deletePostDone = data => {

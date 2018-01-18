@@ -96,12 +96,11 @@ const updatePost = (id, postData) => {
  * @param {string} postId
  */
 const removePost = postId => {
-  fetch(`${API}/posts/${postId}`, {
+  return fetch(`${API}/posts/${postId}`, {
     method: 'DELETE',
     headers: HEADERS,
-  })
-    .then(results => results.json())
-    .then(data => data);
+  }).then(results => results.json());
+  // .then(data => data);
 };
 
 /**

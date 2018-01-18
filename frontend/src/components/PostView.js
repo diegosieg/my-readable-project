@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import VoteCounter from '../components/VoteCounter';
 import CommentList from '../components/CommentList';
+import PageNotFound from '../components/PageNotFound';
 import { MdCreate, MdDelete } from 'react-icons/lib/md';
 
 import './PostItem.css';
@@ -55,65 +56,79 @@ class PostView extends Component {
     //console.log(comments);
 
     return (
-      <div className="c-post-item c-post-view">
-        {postDetails !== undefined ? (
-          <div>
-            <span
-              className={`c-post-category__tag c-tag--${postDetails.category}`}
-            >
-              {postDetails.category}
-            </span>
-            <h2>{postDetails.title}</h2>
-            <div className="c-post__meta">
-              <span className="c-post__info-box">
-                <p className="c-post__info">
-                  Created by:{' '}
-                  <span className="c-post__author">{postDetails.author}</span>
-                  <span className="c-post__time">
-                    {` - on `}
-                    <Moment unix>{postDetails.timestamp / 1000}</Moment>
-                  </span>
-                </p>
-                <div className="c-post-actions">
-                  <a
-                    href=""
-                    onClick={event => {
-                      event.preventDefault();
-                      if (window.confirm('Do you want to delete this post?')) {
-                        deletePost(postDetails.id);
-                        history.push('/');
-                      }
-                    }}
-                    className="c-post-actions__link c-post-actions__link--delete"
-                  >
-                    <MdDelete />
-                    <span>Delete</span>
-                  </a>
-                  <Link
-                    to={`/edit/${postDetails.id}`}
-                    className="c-post-actions__link c-post-actions__link--edit"
-                  >
-                    {' '}
-                    <MdCreate />
-                    <span>Edit</span>
-                  </Link>
-                </div>
-              </span>
-              <span className="c-post__counter">
-                <VoteCounter
-                  typeSection={'post'}
-                  postId={post.id}
-                  voteValue={post.voteScore}
-                />
-              </span>
-            </div>
+      <div>
+        {post.id !== undefined ? (
+          <div className="c-post-item c-post-view">
+            {postDetails !== undefined ? (
+              <div>
+                <span
+                  className={`c-post-category__tag c-tag--${
+                    postDetails.category
+                  }`}
+                >
+                  {postDetails.category}
+                </span>
+                <h2>{postDetails.title}</h2>
+                <div className="c-post__meta">
+                  <span className="c-post__info-box">
+                    <p className="c-post__info">
+                      Created by:{' '}
+                      <span className="c-post__author">
+                        {postDetails.author}
+                      </span>
+                      <span className="c-post__time">
+                        {` - on `}
+                        <Moment unix>{postDetails.timestamp / 1000}</Moment>
+                      </span>
+                    </p>
+                    <div className="c-post-actions">
+                      <a
+                        href=""
+                        onClick={event => {
+                          event.preventDefault();
+                          if (
+                            window.confirm('Do you want to delete this post?')
+                          ) {
+                            //console.log(postDetails.id);
 
-            <p className="c-post__body">{postDetails.body}</p>
+                            deletePost(postDetails.id);
+                            history.push('/');
+                          }
+                        }}
+                        className="c-post-actions__link c-post-actions__link--delete"
+                      >
+                        <MdDelete />
+                        <span>Delete</span>
+                      </a>
+                      <Link
+                        to={`/edit/${postDetails.id}`}
+                        className="c-post-actions__link c-post-actions__link--edit"
+                      >
+                        {' '}
+                        <MdCreate />
+                        <span>Edit</span>
+                      </Link>
+                    </div>
+                  </span>
+                  <span className="c-post__counter">
+                    <VoteCounter
+                      typeSection={'post'}
+                      postId={post.id}
+                      voteValue={post.voteScore}
+                    />
+                  </span>
+                </div>
+
+                <p className="c-post__body">{postDetails.body}</p>
+              </div>
+            ) : (
+              <span>loading</span>
+            )}
+            <CommentList postId={postDetails.id} />
           </div>
         ) : (
-          <span>Loading...</span>
+          <PageNotFound />
         )}
-        <CommentList postId={postDetails.id} />
       </div>
     );
   }
